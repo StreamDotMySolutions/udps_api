@@ -1,5 +1,5 @@
 import  { useEffect, useState } from 'react'
-import { Carousel, FigureImage, Image } from 'react-bootstrap'
+import { Carousel, FigureImage, Image,Row } from 'react-bootstrap'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 
@@ -36,7 +36,8 @@ const BannerComponent = () => {
       return banners.map((banner, index) => {
 
           return (
-            
+          
+    
               <Carousel.Item key={index}>{
                 banner?.filename && 
                 <Link to={banner.redirect_url}>
@@ -49,6 +50,7 @@ const BannerComponent = () => {
                 </Link> 
                 }
               </Carousel.Item>
+          
            
           );
       });
@@ -60,9 +62,11 @@ const BannerComponent = () => {
 
   if (banners.length > 0){
     return (
+      <Row className="mt-4 mb-4 ms-1 ">
         <Carousel>
            {carouselItems()}
         </Carousel>
+        </Row>
       );
   }
  

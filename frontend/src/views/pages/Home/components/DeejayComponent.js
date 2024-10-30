@@ -1,5 +1,5 @@
 import  { useEffect, useState } from 'react'
-import { Carousel, FigureImage, Image, Card,Button, Col } from 'react-bootstrap'
+import { Carousel, FigureImage, Image, Card,Button, Col,Row } from 'react-bootstrap'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 
@@ -89,9 +89,11 @@ const DeejayComponent = () => {
 
   if (deejays.length > 0){
     return (
-      <div className="d-flex flex-wrap">
-        {cardItems()}
-      </div>
+      <Row className="mt-4 mb-4 ms-1 pt-4 pb-3 rounded ">
+        <div className="d-flex flex-wrap">
+          {cardItems()}
+        </div>
+      </Row>
       );
   }
  

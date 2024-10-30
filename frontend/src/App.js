@@ -31,6 +31,7 @@ import Profile from './views/pages/Global/Profile';
 
 
 import Home from './views/pages/Home/Home';
+import Module from './views/pages/Home/Module';
 import ContentPage from './views/pages/Content/content';
 import FooterPage from './views/pages/Content/footer';
 
@@ -52,7 +53,7 @@ function App() {
         
         {/* Home Layout */ }
         <Route element={<HomeLayout />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Module />} />
           <Route path="/contents/:id" element={<ContentPage />} />
           <Route path="/footers/:id" element={<FooterPage />} />
 

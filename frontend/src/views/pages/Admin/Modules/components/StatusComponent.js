@@ -30,6 +30,7 @@ const StatusComponent = ({id, is_active }) => {
         <div>
            
             <Form.Check // prettier-ignore
+                
                 checked={is_active == 1 ? true : false}
                 type="switch"
                 id="custom-switch"

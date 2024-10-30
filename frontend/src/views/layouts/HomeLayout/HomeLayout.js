@@ -51,39 +51,17 @@ const HomeLayout = () => {
   return (
     <>
     
-
-    {/* <nav className="navbar" style={{
-                                'minHeight': '100px',
-                                'backgroundColor': '#103053'
-                              }}>
-      <span className="navbar-brand mb-0 h1 ms-4">
-        <img src={Logo} alt="Logo NasionalFM" height="60" className="d-inline-block align-text-top"  />
-      </span>
-
-
-   
-    </nav> */}
-
-<div className="hero-image ">
-
-<div  className="d-flex flex-row  opacity-75 p-2 gap-4">
-
-
-
-</div>
-  
-  
-  
-</div>
-
-    <div className="container-fluid row overflow-auto colorcontainerkelabu">
-      
-
-      <div className="col d-flex flex-column h-sm-100 mb-2 mt-4">
-          <Outlet />
-          <Footer />
+      {/* Header */}
+      <div className="hero-image ">
+        <div  className="d-flex flex-row  opacity-75 p-2 gap-4"></div>
       </div>
-  </div>
+
+      <div className="container-fluid row overflow-auto colorcontainerkelabu">
+        <div className="col d-flex flex-column h-sm-100 mb-2 mt-4">
+            <Outlet />
+            <Footer />
+        </div>
+    </div>
 </>
   );
 };

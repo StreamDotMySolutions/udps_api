@@ -13,6 +13,7 @@ use App\Http\Controllers\Homepage\{
     VoteController,
     FooterController,
     ChatController,
+    ModuleController
 };
 
 // role = Guest
@@ -47,6 +48,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // homepage
+Route::get('/homepage/modules', [ModuleController::class, 'show']);
 Route::get('/homepage/banners', [BannerController::class, 'show']);
 Route::get('/homepage/deejays', [DeejayController::class, 'show']);
 Route::get('/homepage/topics', [TopicController::class, 'show']);

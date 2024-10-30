@@ -9,7 +9,6 @@ class ModuleController extends Controller
     public function index()
     {
         $modules = Module::defaultOrder()->paginate(10)->withQueryString(); 
-   
         return response()->json(['modules' => $modules]);
 
     }

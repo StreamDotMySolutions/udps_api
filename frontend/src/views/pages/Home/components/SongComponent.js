@@ -34,6 +34,7 @@ const SongComponent = () => {
 
  
   return (
+    <Row className="justify-content-center mt-4 mb-4 ms-1 pt-4 pb-3">
     <div className="container-fluid p-5">
 
     <div className="row">
@@ -84,6 +85,7 @@ const SongComponent = () => {
       
     </div>
   </div>
+  </Row>
   );
 }
 
