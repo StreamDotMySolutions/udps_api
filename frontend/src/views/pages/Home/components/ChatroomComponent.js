@@ -72,8 +72,8 @@ const ChatroomComponent = () => {
       
                 return (
                     <Row key={index}>
-                        <Col xs={1}><Badge>{chat?.username}</Badge></Col>
-                        <Col className="mt-4" xs={11}><i><small>{chat?.message}</small></i></Col>
+                        <Col className="mt-3 col-12"><Badge>{chat?.username}</Badge></Col>
+                        <Col className="mb-3 col-12"><i><small>{chat?.message}</small></i></Col>
                     </Row>
                 )
             }) // map
