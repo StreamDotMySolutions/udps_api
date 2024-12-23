@@ -4,7 +4,8 @@ import ReactPlayer from 'react-player';
 
 const VideoComponent = () => {
     const [played, setPlayed] = React.useState(0);
-    const src =`https://nasionalfm.rtm.gov.my/hls/myStream.m3u8`
+    //const src =`https://nasionalfm.rtm.gov.my/hls/myStream.m3u8`
+    const src = process.env.REACT_APP_STREAMING_URL;
     const [isLive, setIsLive] = useState(false);
     const [refreshKey, setRefreshKey] = useState(0); // key to force refresh
 
