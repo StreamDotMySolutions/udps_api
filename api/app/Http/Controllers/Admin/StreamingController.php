@@ -40,11 +40,11 @@ class StreamingController extends Controller
         try {
             // Run the process
             $process = new Process($command);
-            $process->mustRun(); // Will throw an exception if the command fails
-            //$process->start(); // Start the process asynchronously
+            //$process->mustRun(); // Will throw an exception if the command fails
+            $process->start(); // Start the process asynchronously
             // If needed, you can capture the output
-            // $output = $process->getOutput();
-            // echo $output;
+            $output = $process->getOutput();
+            echo $output;
 
             $pid = $process->getPid();
             echo "Process PID: " . $pid . PHP_EOL;
