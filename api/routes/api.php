@@ -34,7 +34,7 @@ use App\Http\Controllers\Admin\{
 
 
 Route::get('/start-streaming', [StreamingController::class, 'startStreaming']);
-Route::get('/stop-streaming', [StreamingController::class, 'stopStreaming']);
+Route::get('/stop-streaming/{pid}', [StreamingController::class, 'stopStreaming']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

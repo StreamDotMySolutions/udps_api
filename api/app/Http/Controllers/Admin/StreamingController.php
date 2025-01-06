@@ -58,8 +58,12 @@ class StreamingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function stopStreaming(Request $request)
-    {
-       return 'stop streaming';
-    }
+   
+     public function stopStreaming($pid)
+     {
+         // Kill the process using the PID
+         exec("kill -9 $pid");
+
+         return response()->json(['message' => 'Process stopped', 'pid' => $pid]);
+     }
 }
