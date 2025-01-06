@@ -25,7 +25,7 @@ class StreamingController extends Controller
         // Properly structure the ffmpeg command
         // Correct the path using forward slashes
         $command = [
-            'nohup'
+            'nohup',
             'ffmpeg', 
             '-v', 'debug', // Verbose output
             '-i', $source, 
