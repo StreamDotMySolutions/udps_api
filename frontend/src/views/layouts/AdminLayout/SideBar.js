@@ -63,6 +63,9 @@ const SideBar = () => {
                         <i className="fs-5 bi-code"></i><span className="ms-1 d-none d-sm-inline">Header</span>
                     </Link> */}
 
+                    <Link to="/admin/livestream" className="nav-link text-dark-custom px-sm-0 px-2">
+                        <i className="fs-5 bi-camera"></i><span className="ms-1 d-none d-sm-inline">Livestream</span>
+                    </Link> 
                     
                     <Link to="/admin/chatrooms" className="nav-link text-dark-custom px-sm-0 px-2">
                         <i className="fs-5 bi-chat"></i><span className="ms-1 d-none d-sm-inline">Chatroom</span>
