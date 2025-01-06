@@ -25,24 +25,22 @@ class StreamingController extends Controller
         // Properly structure the ffmpeg command
         // Correct the path using forward slashes
         $command = [
-            'nohup',
+            
             'ffmpeg', 
             '-v', 'debug', // Verbose output
             '-i', $source, 
             '-c', 'copy', 
             '-f', 'flv', 
-            $destination
-            ,
-            '> /dev/null 2>&1', 
-            '&'
+            $destination,
+            ' &'
         ];
        
         //exec($command);
         try {
             // Run the process
             $process = new Process($command);
-            $process->mustRun(); // Will throw an exception if the command fails
-            //$process->start(); // Start the process asynchronously
+            //$process->mustRun(); // Will throw an exception if the command fails
+            $process->start(); // Start the process asynchronously
             // If needed, you can capture the output
             // $output = $process->getOutput();
             // echo $output;
