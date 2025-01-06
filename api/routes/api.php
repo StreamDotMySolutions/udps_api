@@ -27,7 +27,14 @@ use App\Http\Controllers\User\{
     AccountController,
 };
 
+// role = Admin
+use App\Http\Controllers\Admin\{
+    StreamingController,
+};
 
+
+Route::get('/start-streaming', [StreamingController::class, 'startStreaming']);
+Route::get('/stop-streaming', [StreamingController::class, 'stopStreaming']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
