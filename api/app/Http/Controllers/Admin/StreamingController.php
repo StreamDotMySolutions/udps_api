@@ -32,7 +32,7 @@ class StreamingController extends Controller
             '-c', 'copy', 
             '-f', 'flv', 
             $destination,
-            ' &',
+ 
    
         ];
        
