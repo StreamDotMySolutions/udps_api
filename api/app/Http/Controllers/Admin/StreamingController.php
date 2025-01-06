@@ -32,41 +32,25 @@ class StreamingController extends Controller
             '-c', 'copy', 
             '-f', 'flv', 
             $destination,
- 
    
         ];
        
-        //exec($command);
         try {
-            // Run the process
+            // Create the process
             $process = new Process($command);
-            //$process->mustRun(); // Will throw an exception if the command fails
+            $process->setTimeout(null); // Disable timeout for long-running processes
+            $process->setOptions(['create_new_console' => true]); // Detach the process in the background
             $process->start(); // Start the process asynchronously
-            // If needed, you can capture the output
-            $output = $process->getOutput();
-            echo $output;
-
+        
+            // Get the PID of the detached process
             $pid = $process->getPid();
-            echo "Process PID: " . $pid . PHP_EOL;
+            echo "Process running in the background with PID: " . $pid . PHP_EOL;
         
         } catch (ProcessFailedException $exception) {
-            // Handle errors (if the process fails)
+            // Handle errors
             echo "The command failed with error: " . $exception->getMessage();
-        }        
-        // $this->ffmpegProcess = Process::fromShellCommandline($command);
-        // $this->ffmpegProcess->setTimeout(0); // No timeout for long-running process
-    
-        // try {
-        //     $this->ffmpegProcess->start();
-        //     Storage::put('ffmpeg_process.pid', $this->ffmpegProcess->getPid());
-        //     return response()->json(['message' => 'Streaming started.'], 200);
-        // } catch (ProcessFailedException $exception) {
-        //     return response()->json(['error' => 'Failed to start streaming: ' . $exception->getMessage()], 500);
-        // } catch (\Exception $exception) {
-        //     // Catch any other unexpected exceptions
-        //     \Log::error('Unexpected error: ' . $exception->getMessage());
-        //     return response()->json(['error' => 'An unexpected error occurred.'], 500);
-        // }
+        }
+     
     }
     
     /**
