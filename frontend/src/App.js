@@ -26,6 +26,7 @@ import FooterManagement from './views/pages/Admin/Footer';
 import ChatroomManagement from './views/pages/Admin/Chatrooms';
 import ModuleManagement from './views/pages/Admin/Modules';
 import LivestreamManagement from './views/pages/Admin/Livestream';
+import RestreamManagement from './views/pages/Admin/Restream';
 
 // Profile
 import Profile from './views/pages/Global/Profile';
@@ -94,6 +95,7 @@ function App() {
             <Route path="/admin/chatrooms" element={<ChatroomManagement />} />
             <Route path="/admin/modules" element={<ModuleManagement />} />
             <Route path="/admin/livestream" element={<LivestreamManagement />} />
+            <Route path="/admin/restream" element={<RestreamManagement />} />
           </Route>
         </Route>
 
