@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\{
     FooterController,
     ChatController,
     ModuleController,
+    RestreamController,
 };
 
 // Protect all admin routes with the 'admin' role
@@ -86,6 +87,16 @@ Route::group(['middleware' => ['auth:sanctum','role:admin']], function () {
     Route::get('/modules', [ModuleController::class, 'index']);
     Route::get('/modules/ordering/{module}', [ModuleController::class, 'ordering']);
     Route::get('/modules/activation/{module}/{is_active}', [ModuleController::class, 'activation']);
+
+    // Restream Management
+    // GET /api/admin/restreams
+    Route::get('/restreams', [RestreamController::class, 'index']);
+    Route::get('/restreams/{restream}', [RestreamController::class, 'show']);
+    Route::post('/restreams', [RestreamController::class, 'store']);
+    Route::put('/restreams/{restream}', [RestreamController::class, 'update']);
+    Route::post('/restreams', [RestreamController::class, 'store']);
+    Route::delete('/restreams/{restream}', [RestreamController::class, 'delete']);
+    Route::get('/restreams/ordering/{restream}', [RestreamController::class, 'ordering']);
 
 });
 

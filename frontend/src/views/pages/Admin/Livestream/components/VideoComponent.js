@@ -52,7 +52,7 @@ const VideoComponent = () => {
           </>
         ) : (
           <>
-            <h1 className='text-center' style={{ color: '#fff' }}>Offline</h1>
+            <h2 className='text-center'>Offline</h2>
           </>
         )}
     </>
