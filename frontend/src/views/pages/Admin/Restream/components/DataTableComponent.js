@@ -90,7 +90,7 @@ const DataTableComponent = () => {
                                             </td>
                                             <td className='text-center'>{item.pid}</td> 
                                             <td className='text-center'>{item.is_active}</td>    
-                                            <td className='text-center'><StreamComponent isActive={item.is_active} id={item.id} /></td>   
+                                            <td className='text-center'><StreamComponent isActive={item.is_active} id={item.id} disabled={!store.getValue('live')}/></td>   
                                                     
                                                         
                                             <td className='text-center' style={{width: '200px'}}>

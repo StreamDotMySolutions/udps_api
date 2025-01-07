@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Badge, Col, Row } from 'react-bootstrap';
 import ReactPlayer from 'react-player';
+import useStore from '../../../../../store';
 
 const CheckStream = () => {
 
     //const src =`https://nasionalfm.rtm.gov.my/hls/myStream.m3u8`
     const src = process.env.REACT_APP_STREAMING_URL;
     const [isLive, setIsLive] = useState(false);
+    const store = useStore()
 
 
     useEffect(() => {
@@ -16,9 +18,12 @@ const CheckStream = () => {
                 .then(response => {
                 if (response.ok) {
                     setIsLive(true);
+                    store.setValue('live', true )
                     //setRefreshKey(prevKey => prevKey + 1); // refresh when stream is live
+             
                 } else {
                     setIsLive(false);
+                    store.setValue('live', false )
                 }
                 })
                 .catch(() => {
