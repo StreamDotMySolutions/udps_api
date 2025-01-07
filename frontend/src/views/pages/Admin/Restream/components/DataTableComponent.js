@@ -9,6 +9,7 @@ import CreateModal from '../modals/CreateModal';
 import EditModal from '../modals/EditModal';
 import DeleteModal from '../modals/DeleteModal';
 import StreamComponent from './StreamComponent';
+import CheckStream from './CheckStream';
 
 const DataTableComponent = () => {
     const store = useStore()
@@ -17,10 +18,25 @@ const DataTableComponent = () => {
     //console.log(items)
     return (
         <div>
+       
+
+       <div className="contaicolner">
+    <div className="row align-items-center">
+        {/* Left Column */}
+        <div className="col-md-6">
+            <CheckStream />
+        </div>
+
+        {/* Right Column */}
+        <div className="col-md-6 d-flex justify-content-end">
             <CreateButton>
                 <CreateModal />
             </CreateButton>
+        </div>
+    </div>
+</div>
             
+
    
             <Table>
                 <thead>
