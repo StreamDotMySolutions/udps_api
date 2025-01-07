@@ -8,7 +8,7 @@ import CreateButton from '../../../../../libs/CreateButton';
 import CreateModal from '../modals/CreateModal';
 import EditModal from '../modals/EditModal';
 import DeleteModal from '../modals/DeleteModal';
-import ImageModal from '../modals/ImageModal';
+import StreamComponent from './StreamComponent';
 
 const DataTableComponent = () => {
     const store = useStore()
@@ -27,10 +27,11 @@ const DataTableComponent = () => {
                     <tr>
                         <th style={{ 'width': '20px'}}>ID</th>
                         <th style={{ 'width': '20px'}} className='text-center'>Ordering</th>
-                        <th  style={{ 'width': '100vH'}}>Restream</th>
-                        <th>Hashtag</th>
-                        <th>Created At</th>
-                        <th className='text-center'></th>
+                        <th  style={{ 'width': '100vH'}}>Restream Destination</th>
+                        <th style={{ 'width': '20px'}} className='text-center'>PID</th>
+                        <th style={{ 'width': '20px'}} className='text-center'>Status</th>
+                        <th style={{ 'width': '20px'}} className='text-center'>Stream</th>
+                        <th className='text-center'>Action</th>
                     </tr>
                 </thead>
 
@@ -64,16 +65,21 @@ const DataTableComponent = () => {
                                                             alt="Preview"
                                                         />
                                                     </Figure> */}
-                                                    <h3>{item.title}</h3>
+                                                    <h3>{item.name}</h3>
                                             
-                                                    <div dangerouslySetInnerHTML={{ __html: item.description}} />
+                                                    <div dangerouslySetInnerHTML={{ __html: item.rtmp_address}} />
                                                 </Card>
                                               
                                                 
                                             </td>
-                                            <td style={{'width': '200px'}}><Badge>{item.hashtag}</Badge></td>
-                                            <td style={{width: '180px'}}>{item.created_at}</td>
+                                            <td className='text-center'>{item.pid}</td> 
+                                            <td className='text-center'>{item.is_active}</td>    
+                                            <td className='text-center'><StreamComponent isActive={item.is_active} id={item.id} /></td>   
+                                                    
+                                                        
                                             <td className='text-center' style={{width: '200px'}}>
+                                          
+                                                {' '}
                                                 <EditModal id={item.id} />
                                                 {' '}
                                                 <DeleteModal id={item.id} />

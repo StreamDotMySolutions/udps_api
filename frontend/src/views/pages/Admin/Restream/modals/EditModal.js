@@ -114,7 +114,7 @@ export default function EditModal({id}) {
             <HtmlFormComponent isLoading={isLoading} />
           </Modal.Body>
           
-          <Modal.Restream>
+          <Modal.Footer>
             <Button 
               disabled={isLoading}
               variant="secondary" 
@@ -129,7 +129,7 @@ export default function EditModal({id}) {
               Submit
             </Button>
 
-          </Modal.Restream>
+          </Modal.Footer>
         </Modal>
       </>
     );

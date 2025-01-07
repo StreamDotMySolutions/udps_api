@@ -109,7 +109,7 @@ export default function DeleteModal({id}) {
             <HtmlFormComponent isLoading={true} />
           </Modal.Body>
           
-          <Modal.Restream>
+          <Modal.Footer>
 
             <FormCheck
               className='me-4'
@@ -136,7 +136,7 @@ export default function DeleteModal({id}) {
               Submit
             </Button>
 
-          </Modal.Restream>
+          </Modal.Footer>
         </Modal>
       </>
     );

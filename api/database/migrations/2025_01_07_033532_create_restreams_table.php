@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('rtmp_address')->nullable();
             $table->boolean('is_active')->default(false);
-            $table->integer('pid')->default(null);
+            $table->integer('pid')->nullable();
             $table->nestedSet(); // Kalnoy nestedset
             $table->timestamps();
         });

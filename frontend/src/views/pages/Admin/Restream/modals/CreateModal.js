@@ -16,7 +16,6 @@ export default function CreateModal() {
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
 
-   
 
     const handleShowClick = () =>{
       //store.emptyData()
@@ -91,7 +90,7 @@ export default function CreateModal() {
             <HtmlFormComponent isLoading={isLoading} />
           </Modal.Body>
           
-          <Modal.Restream>
+          <Modal.Footer>
             <Button 
               disabled={isLoading}
               variant="secondary" 
@@ -106,7 +105,7 @@ export default function CreateModal() {
               Submit
             </Button>
 
-          </Modal.Restream>
+          </Modal.Footer>
         </Modal>
       </>
     );

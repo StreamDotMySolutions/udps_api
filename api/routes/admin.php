@@ -97,6 +97,8 @@ Route::group(['middleware' => ['auth:sanctum','role:admin']], function () {
     Route::post('/restreams', [RestreamController::class, 'store']);
     Route::delete('/restreams/{restream}', [RestreamController::class, 'delete']);
     Route::get('/restreams/ordering/{restream}', [RestreamController::class, 'ordering']);
+    Route::get('/restreams/start-streaming/{restream}', [RestreamController::class, 'startStreaming']);
+    Route::get('/restreams/stop-streaming/{restream}', [RestreamController::class, 'stopStreaming']);
 
 });
 

@@ -94,7 +94,7 @@ function SignIn() {
 
     return (
         <Row className='ms-4 col-8 border border-1 p-4 rounded'  style={{ backgroundColor: isLoading ? '#eaeaea' : 'transparent' }} >
-        <h1>Sign In {store.getValue('authenticated') ? 'auth' : 'false'}</h1>
+        <h1>Sign In</h1>
 
      
         <Form onSubmit={handleSubmit}>
