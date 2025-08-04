@@ -17,9 +17,9 @@ const SideBar = () => {
                         <i className="fs-5 bi-speedometer"></i><span className="ms-1 d-none d-sm-inline">Dashboard</span>
                     </Link>
 
-                    <Link to="/admin/modules" className="nav-link text-dark-custom px-sm-0 px-2">
+                    {/* <Link to="/admin/modules" className="nav-link text-dark-custom px-sm-0 px-2">
                         <i className="fs-5 bi-gear"></i><span className="ms-1 d-none d-sm-inline">Modules</span>
-                    </Link> 
+                    </Link>  */}
 
                     <Link to="/admin/users" className="nav-link text-dark-custom px-sm-0 px-2">
                         <i className="fs-5 bi-people"></i><span className="ms-1 d-none d-sm-inline">User</span>
@@ -33,23 +33,23 @@ const SideBar = () => {
                         <i className="fs-5 bi-database"></i><span className="ms-1 d-none d-sm-inline">Recording</span>
                     </Link> */}
 
-                    <Link to="/admin/topics" className="nav-link text-dark-custom px-sm-0 px-2">
+                    {/* <Link to="/admin/topics" className="nav-link text-dark-custom px-sm-0 px-2">
                         <i className="fs-5 bi-p-circle"></i><span className="ms-1 d-none d-sm-inline">Carta Undi</span>
-                    </Link>
+                    </Link> */}
 
                     {/* <Link to="/admin/chatroom" className="nav-link text-dark-custom px-sm-0 px-2">
                         <i className="fs-5 bi-chat"></i><span className="ms-1 d-none d-sm-inline">Chatroom</span>
                     </Link> */}
 
                 
-
+{/* 
                     <Link to="/admin/banners" className="nav-link text-dark-custom px-sm-0 px-2">
                         <i className="fs-5 bi-image"></i><span className="ms-1 d-none d-sm-inline">Banner</span>
                     </Link>
 
                     <Link to="/admin/deejays" className="nav-link text-dark-custom px-sm-0 px-2">
                         <i className="fs-5 bi-person"></i><span className="ms-1 d-none d-sm-inline">Deejay</span>
-                    </Link>
+                    </Link> */}
 
                     {/* <Link to="/admin/banners" className="nav-link text-dark-custom px-sm-0 px-2">
                         <i className="fs-5 bi-clipboard"></i><span className="ms-1 d-none d-sm-inline">News</span>
@@ -62,7 +62,7 @@ const SideBar = () => {
                     {/* <Link to="/admin/banners" className="nav-link text-dark-custom px-sm-0 px-2">
                         <i className="fs-5 bi-code"></i><span className="ms-1 d-none d-sm-inline">Header</span>
                     </Link> */}
-
+{/* 
                     <Link to="/admin/livestream" className="nav-link text-dark-custom px-sm-0 px-2">
                         <i className="fs-5 bi-camera"></i><span className="ms-1 d-none d-sm-inline">Livestream</span>
                     </Link> 
@@ -77,7 +77,7 @@ const SideBar = () => {
 
                     <Link to="/admin/footer" className="nav-link text-dark-custom px-sm-0 px-2">
                         <i className="fs-5 bi-code"></i><span className="ms-1 d-none d-sm-inline">Footer</span>
-                    </Link> 
+                    </Link>  */}
 
 
                     

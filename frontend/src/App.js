@@ -46,6 +46,7 @@ import SignOut from './views/pages/Guest/SignOut';
 
 
 import './App.css';
+import HomePage from './views/pages/HomePage';
 
 
 function App() {
@@ -54,15 +55,16 @@ function App() {
       <Routes>
         
         {/* Home Layout */ }
-        <Route element={<HomeLayout />}>
-          <Route path="/" element={<Module />} />
+        {/* <Route element={<HomeLayout />}>
+          <Route path="/" element={<HomePage/>} />
           <Route path="/contents/:id" element={<ContentPage />} />
           <Route path="/footers/:id" element={<FooterPage />} />
 
-        </Route>
+        </Route> */}
         
         {/* Guest Layout */}
         <Route element={<GuestLayout />}>
+          <Route path="/" element={<HomePage/>} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logout" element={<LoginPage />} />
           <Route path="/about-us" element={<AboutUs />} />

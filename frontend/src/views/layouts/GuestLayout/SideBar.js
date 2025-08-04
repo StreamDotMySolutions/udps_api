@@ -6,7 +6,7 @@ const SideBar = () => {
         <div className="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 bg-guest d-flex sticky-top">
         <div className="d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start px-3 pt-2 text-dark-custom">
             <a href="/" className="d-flex align-items-center pb-sm-3 mb-md-0 me-md-auto text-dark-custom text-decoration-none">
-                <span className="fs-5"><span className="d-none d-sm-inline"><strong>PORTAL</strong> CMS</span></span>
+                <span className="fs-5"><span className="d-none d-sm-inline"><strong>UDPS</strong> ai</span></span>
             </a>
             <ul className="nav nav-pills flex-sm-column flex-row flex-nowrap flex-shrink-1 flex-sm-grow-0 flex-grow-1 mb-sm-auto mb-0 justify-content-center align-items-center align-items-sm-start" id="menu">
                 <li className="nav-item">
