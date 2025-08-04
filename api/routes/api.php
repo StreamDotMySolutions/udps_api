@@ -12,6 +12,7 @@ use App\Http\Controllers\{
 // role = User
 use App\Http\Controllers\User\{
     AccountController,
+    ApiTokenController,
 };
 
 
@@ -48,4 +49,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 Route::post('/frontend/register', [RegisterController::class, 'store']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+
+// Api Tokens
+// api/tokens/index
+// api/tokens/store
+// api/tokens/123
+Route::middleware('auth:sanctum')->prefix('tokens')->group(function () {
+    Route::get('/', [ApiTokenController::class, 'index']);
+    Route::post('/', [ApiTokenController::class, 'store']);
+    Route::delete('/{id}', [ApiTokenController::class, 'destroy']);
+});
 

@@ -14,28 +14,29 @@ import DashboardPage from './views/pages/User/DashboardPage';
 
 // User
 import UserHomePage from './views/pages/User/Home';
+import ApiToken from './views/pages/User/ApiToken';
 
 // Admin
 import AdminHomePage from './views/pages/Admin/Home';
 import UserManagement from './views/pages/Admin/Users';
-import BannerManagement from './views/pages/Admin/Banners';
-import DeejayManagement from './views/pages/Admin/Deejays';
-import TopicManagement from './views/pages/Admin/Topics';
-import ChoiceManagement from './views/pages/Admin/Choices';
-import FooterManagement from './views/pages/Admin/Footer';
-import ChatroomManagement from './views/pages/Admin/Chatrooms';
-import ModuleManagement from './views/pages/Admin/Modules';
-import LivestreamManagement from './views/pages/Admin/Livestream';
-import RestreamManagement from './views/pages/Admin/Restream';
+// import BannerManagement from './views/pages/Admin/Banners';
+// import DeejayManagement from './views/pages/Admin/Deejays';
+// import TopicManagement from './views/pages/Admin/Topics';
+// import ChoiceManagement from './views/pages/Admin/Choices';
+// import FooterManagement from './views/pages/Admin/Footer';
+// import ChatroomManagement from './views/pages/Admin/Chatrooms';
+// import ModuleManagement from './views/pages/Admin/Modules';
+// import LivestreamManagement from './views/pages/Admin/Livestream';
+// import RestreamManagement from './views/pages/Admin/Restream';
 
 // Profile
 import Profile from './views/pages/Global/Profile';
 
 
-import Home from './views/pages/Home/Home';
-import Module from './views/pages/Home/Module';
-import ContentPage from './views/pages/Content/content';
-import FooterPage from './views/pages/Content/footer';
+// import Home from './views/pages/Home/Home';
+// import Module from './views/pages/Home/Module';
+// import ContentPage from './views/pages/Content/content';
+// import FooterPage from './views/pages/Content/footer';
 
 
 import AboutUs from './views/pages/Guest/AboutUs';
@@ -77,6 +78,7 @@ function App() {
         <Route element={<ProtectedRoute role={'user'} />}>
           <Route element={<UserLayout />}>
             <Route path="/user/home" element={<UserHomePage />} />
+            <Route path="/user/api-token" element={<ApiToken />} />
             <Route path="/user/Profile" element={<Profile />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/sign-out" element={<SignOut />} />
@@ -88,7 +90,7 @@ function App() {
           <Route element={<AdminLayout />}>`
             <Route path="/admin/home" element={<AdminHomePage />} />
             <Route path="/admin/users" element={<UserManagement />} />
-            <Route path="/admin/banners" element={<BannerManagement />} />
+            {/* <Route path="/admin/banners" element={<BannerManagement />} />
             <Route path="/admin/deejays" element={<DeejayManagement />} />
             <Route path="/admin/topics" element={<TopicManagement />} />
             <Route path="/admin/topics/:topicId/choices" element={<ChoiceManagement />} />
@@ -97,7 +99,7 @@ function App() {
             <Route path="/admin/chatrooms" element={<ChatroomManagement />} />
             <Route path="/admin/modules" element={<ModuleManagement />} />
             <Route path="/admin/livestream" element={<LivestreamManagement />} />
-            <Route path="/admin/restream" element={<RestreamManagement />} />
+            <Route path="/admin/restream" element={<RestreamManagement />} /> */}
           </Route>
         </Route>
 
