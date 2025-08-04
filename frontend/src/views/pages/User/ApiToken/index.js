@@ -37,7 +37,7 @@ const ApiToken = () => {
             )
             .then( response => { // response block
                 console.log(response)
-               //store.setValue('restreams', response.data.restreams ?  response.data.restreams : null) // to be used in DataTableComponent
+                store.setValue('tokens', response.data ?  response.data : null) // to be used in DataTableComponent
                 store.setValue('refresh', false ) // reset the refresh state to false
             })
             .catch( error => { // error block
@@ -50,11 +50,12 @@ const ApiToken = () => {
         ] 
 
     ) // useEffect()
+    
 
     return (
         <div>
-            <h1>ApiToken</h1>
-            {/* <DataTableComponent /> */}
+            <h1>API Tokens Management</h1>
+            <DataTableComponent />
         </div>
     );
 };

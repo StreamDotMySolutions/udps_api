@@ -14,7 +14,7 @@ class ApiTokenController extends Controller
             return [
                 'id' => $token->id,
                 'name' => $token->name,
-                'abilities' => $token->abilities,
+                //'abilities' => $token->abilities,
                 'created_at' => $token->created_at,
                 'last_used_at' => $token->last_used_at,
             ];

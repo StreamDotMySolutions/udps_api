@@ -13,28 +13,29 @@ import CheckStream from './CheckStream';
 
 const DataTableComponent = () => {
     const store = useStore()
-    const items = store.getValue('restreams'); 
+    const items = store.getValue('tokens'); 
     const url = process.env.REACT_APP_SERVER_URL; 
-    //console.log(items)
+    console.log(items)
+    
     return (
-        <div>
+    <div>
        
 
-       <div className="contaicolner">
-    <div className="row align-items-center">
-        {/* Left Column */}
-        <div className="col-md-6">
-            <CheckStream />
-        </div>
+    <div className="contaicolner">
+        <div className="row align-items-center">
+            {/* Left Column */}
+            <div className="col-md-6">
+                {/* <CheckStream /> */}
+            </div>
 
-        {/* Right Column */}
-        <div className="col-md-6 d-flex justify-content-end">
-            <CreateButton>
-                <CreateModal />
-            </CreateButton>
+            {/* Right Column */}
+            <div className="col-md-6 d-flex justify-content-end">
+                <CreateButton>
+                    <CreateModal />
+                </CreateButton>
+            </div>
         </div>
     </div>
-</div>
             
 
    
@@ -42,16 +43,14 @@ const DataTableComponent = () => {
                 <thead>
                     <tr>
                         <th style={{ 'width': '20px'}}>ID</th>
-                        <th style={{ 'width': '20px'}} className='text-center'>Ordering</th>
-                        <th  style={{ 'width': '100vH'}}>Restream Destination</th>
-                        <th style={{ 'width': '20px'}} className='text-center'>PID</th>
-                        <th style={{ 'width': '20px'}} className='text-center'>Status</th>
-                        <th style={{ 'width': '20px'}} className='text-center'>Stream</th>
+                        <th  style={{ 'width': '100vH'}}>Name</th>
+                        <th style={{ 'width': '50px'}} className='text-center'>Created At</th>
+                        <th style={{ 'width': '50px'}} className='text-center'>Last Used</th>
                         <th className='text-center'>Action</th>
                     </tr>
                 </thead>
 
-                <tbody>
+                {/* <tbody>
                     {items ? 
                     (
                         <>
@@ -61,43 +60,21 @@ const DataTableComponent = () => {
                                     {items.data.map((item, index) => (
                                         <tr key={index}>
                                             <td><span className="badge bg-dark">{item.id}</span></td>    
-                                            <td className='text-center' style={{width: '100px'}}>
-                                                <Ordering id={item.id} direction='up' disabled={index === 0}/>
-                                                {' '}
-                                                <Ordering id={item.id} direction='down' disabled={index === items.data.length - 1}/>
-                                            </td>
+                                     
                                 
                                         
                               
-                                            <td style={{width: '*'}}>
                                                
-                                                <Card className='p-3'>
-
-                                                    {/* <Figure>
-                                                        <Figure.Image
-                                                            width={'300px'}
-                                                            className="img-fluid"
-                                                            src={`${url}/storage/restreams/${item.filename}`}
-                                                            alt="Preview"
-                                                        />
-                                                    </Figure> */}
-                                                    <h3>{item.name}</h3>
+                              
+                                            <td className='text-center'>{item.name}</td> 
+                                            <td className='text-center'>{item.created_at}</td>    
                                             
-                                                    <div dangerouslySetInnerHTML={{ __html: item.rtmp_address}} />
-                                                </Card>
-                                              
-                                                
-                                            </td>
-                                            <td className='text-center'>{item.pid}</td> 
-                                            <td className='text-center'>{item.is_active}</td>    
-                                            <td className='text-center'><StreamComponent isActive={item.is_active} id={item.id} disabled={!store.getValue('live')}/></td>   
                                                     
                                                         
                                             <td className='text-center' style={{width: '200px'}}>
                                           
                                                 {' '}
-                                                <EditModal id={item.id} />
-                                                {' '}
+                                              
                                                 <DeleteModal id={item.id} />
                                             </td>
                                         </tr>
@@ -116,6 +93,33 @@ const DataTableComponent = () => {
                             <td colSpan={7} className="text-center">No data available</td>
                         </tr>
                     )}
+                </tbody> */}
+
+
+                <tbody>
+                {items && items.length > 0 ? (
+                    items.map((item, index) => (
+                    <tr key={index}>
+                        <td><span className="badge bg-dark">{item.id}</span></td>
+                        <td className="text-left">{item.name}</td>
+                        <td className="text-center">
+                        {new Date(item.created_at).toLocaleString()}
+                        </td>
+                        <td className="text-center">
+                        {item.last_used_at
+                            ? new Date(item.last_used_at).toLocaleString()
+                            : 'Never used'}
+                        </td>
+                        <td className="text-center" style={{ width: '200px' }}>
+                        <DeleteModal id={item.id} />
+                        </td>
+                    </tr>
+                    ))
+                ) : (
+                    <tr>
+                    <td colSpan={5} className="text-center">No data available</td>
+                    </tr>
+                )}
                 </tbody>
 
             </Table>
