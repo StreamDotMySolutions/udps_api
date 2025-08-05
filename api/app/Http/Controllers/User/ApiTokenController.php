@@ -20,4 +20,25 @@ class ApiTokenController extends Controller
             ];
         });
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'abilities' => 'sometimes|array',
+        ]);
+
+        $token = $request->user()->createToken(
+            $request->name,
+            $request->abilities ?? ['*']
+        );
+
+        return response()->json([
+            'name' => $request->input('name'),
+            'token' => $token->plainTextToken // ONLY available here
+        ]);
+    }
+
+
+
 }

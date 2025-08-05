@@ -9,7 +9,8 @@ import { useParams } from 'react-router-dom';
 export default function CreateModal() {
 
     const store = useStore()
-    const url = process.env.REACT_APP_API_URL; 
+    //const url = process.env.REACT_APP_API_URL; 
+    const url = process.env.REACT_APP_API_URL + '/tokens'; // API server
     const errors = store.getValue('errors')
     const [show, setShow] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
@@ -20,16 +21,16 @@ export default function CreateModal() {
     const handleShowClick = () =>{
       //store.emptyData()
       store.setValue('errors', null)
-      store.setValue('title', null )
-      store.setValue('rtmp_address', null)
+      store.setValue('name', null )
+
 
       setShow(true)
     } 
 
     const handleCloseClick = () => {
       store.setValue('errors', null)
-      store.setValue('title', null )
-      store.setValue('rtmp_address', null)
+      store.setValue('name', null )
+
 
       handleClose()
     }
@@ -43,7 +44,6 @@ export default function CreateModal() {
         const formData = new FormData();
         const dataArray = [
           { key: 'name', value: store.getValue('name') },
-          { key: 'rtmp_address', value: store.getValue('rtmp_address') }, 
         ];
         
         appendFormData(formData, dataArray);
@@ -54,7 +54,7 @@ export default function CreateModal() {
         // send to Laravel
         axios({ 
             method: 'post', 
-            url: `${url}/admin/restreams`,
+            url: `${url}`,
             data: formData
           })
           .then( response => { // success 200
@@ -83,7 +83,7 @@ export default function CreateModal() {
   
         <Modal size={'lg'} show={show} onHide={handleCloseClick}>
           <Modal.Header closeButton>
-            <Modal.Title>Create Restream</Modal.Title>
+            <Modal.Title>Create API Key</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>

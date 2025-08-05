@@ -18,14 +18,6 @@ const HtmlFormComponent = ({isLoading}) => {
                 />
             </Col>
 
-            <Col className='mb-2'>
-                <InputText
-                    fieldName='rtmp_address' 
-                    placeholder='rtmp://'  
-                    icon='fa-solid fa-globe'
-                    isLoading={isLoading}
-                />
-            </Col>
         </>
     );
 };
