@@ -44,6 +44,7 @@ const DataTableComponent = () => {
                     <tr>
                         <th style={{ 'width': '20px'}}>ID</th>
                         <th  style={{ 'width': '100vH'}}>Name</th>
+                        <th  style={{ 'width': '100vH'}}>API Key</th>
                         <th style={{ 'width': '50px'}} className='text-center'>Created At</th>
                         <th style={{ 'width': '50px'}} className='text-center'>Last Used</th>
                         <th className='text-center'>Action</th>
@@ -102,6 +103,7 @@ const DataTableComponent = () => {
                     <tr key={index}>
                         <td><span className="badge bg-dark">{item.id}</span></td>
                         <td className="text-left">{item.name}</td>
+                         <td className="text-left">{item.api_key}</td>
                         <td className="text-center">
                         {new Date(item.created_at).toLocaleString()}
                         </td>

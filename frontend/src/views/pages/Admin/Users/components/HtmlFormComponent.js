@@ -5,6 +5,11 @@ import useStore from '../../../../../store'
 const HtmlFormComponent = ({isLoading}) => {
     const store = useStore()
 
+    const statusOptions = [
+    { id: 1, name: 'Active' },
+    { id: 0, name: 'Inactive' }
+        ];
+
     return (
         <div>
             <InputText 
@@ -23,6 +28,16 @@ const HtmlFormComponent = ({isLoading}) => {
                   isLoading={isLoading}
                 />
             <br />
+
+          <InputSelect 
+                  fieldName='status' 
+                  options = {statusOptions}
+                  placeholder='Select status'  
+                  icon='fa-solid fa-plug'
+                  isLoading={isLoading}
+                />
+            <br />
+
             <InputText 
                 fieldName='email' 
                 placeholder='E-mail'  

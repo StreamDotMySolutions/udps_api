@@ -49,6 +49,7 @@ export default function CreateModal() {
         const formData = new FormData();
         const dataArray = [
             { key: 'name', value: store.getValue('name') },
+            { key: 'status', value: store.getValue('status') },
             { key: 'role_id', value: store.getValue('role_id') },
             { key: 'email', value: store.getValue('email') },
             { key: 'password', value: store.getValue('password') },

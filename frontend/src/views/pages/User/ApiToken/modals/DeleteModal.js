@@ -7,7 +7,7 @@ import HtmlFormComponent from '../components/HtmlFormComponent';
 
 export default function DeleteModal({id}) {
     const store = useStore()
-    const url = process.env.REACT_APP_API_URL; 
+     const url = process.env.REACT_APP_API_URL + '/tokens'; // API server
 
     const errors = store.getValue('errors')
    
@@ -23,29 +23,29 @@ export default function DeleteModal({id}) {
       setIsLoading(true)
       setShow(true)
       
-      // load restream data based on given id
-      axios({ 
-        method: 'get', 
-        url: `${url}/admin/restreams/${id}`,
-        })
-      .then( response => { // success 200
-          console.log(response)
-          if( response?.data?.restream.hasOwnProperty('name') ){
-            store.setValue('name', response?.data?.restream?.name )
-          }
+      // // load restream data based on given id
+      // axios({ 
+      //   method: 'get', 
+      //   url: `${url}/${id}`,
+      //   })
+      // .then( response => { // success 200
+      //     console.log(response)
+      //     if( response?.data?.restream.hasOwnProperty('name') ){
+      //       store.setValue('name', response?.data?.restream?.name )
+      //     }
 
-          if( response?.data?.restream.hasOwnProperty('rtmp_address') ){
-            store.setValue('rtmp_address', response?.data?.restream?.rtmp_address )
-          }
+      //     if( response?.data?.restream.hasOwnProperty('rtmp_address') ){
+      //       store.setValue('rtmp_address', response?.data?.restream?.rtmp_address )
+      //     }
 
 
-      })
-      .catch( error => {
-          console.warn(error)
-      })
-      .finally( () => {
-        setIsLoading(false)
-      })
+      // })
+      // .catch( error => {
+      //     console.warn(error)
+      // })
+      // .finally( () => {
+      //   setIsLoading(false)
+      // })
       
     } 
 
@@ -73,7 +73,7 @@ export default function DeleteModal({id}) {
         // send to Laravel
         axios({ 
             method: 'post', 
-            url: `${url}/admin/restreams/${id}`,
+            url: `${url}/${id}`,
             data: formData
           })
           .then( response => { // success 200
@@ -102,11 +102,11 @@ export default function DeleteModal({id}) {
   
         <Modal size={'lg'} show={show} onHide={handleCloseClick}>
           <Modal.Header closeButton>
-            <Modal.Title>Delete Restream</Modal.Title>
+            <Modal.Title>Delete Api Key</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
-            <HtmlFormComponent isLoading={true} />
+              <h1>Are you sure to delete this key ?</h1>
           </Modal.Body>
           
           <Modal.Footer>
@@ -115,7 +115,7 @@ export default function DeleteModal({id}) {
               className='me-4'
               isInvalid={errors?.hasOwnProperty('acknowledge')}
               reverse
-              disabled={isLoading}
+              //disabled={isLoading}
               label="acknowledge"
               type="checkbox"
               onClick={ () => store.setValue('errors', null) }
@@ -123,14 +123,14 @@ export default function DeleteModal({id}) {
             /> 
 
             <Button 
-              disabled={isLoading}
+              //disabled={isLoading}
               variant="secondary" 
               onClick={handleCloseClick}>
               Close
             </Button>
 
             <Button 
-              disabled={isLoading}
+              //disabled={isLoading}
               variant="primary" 
               onClick={handleSubmitClick}>
               Submit

@@ -63,6 +63,7 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
+            'status' => $request->input('status'),
             'password' => Hash::make($request->input('password'))
         ]);
         
@@ -97,6 +98,11 @@ class UserController extends Controller
         // Email
         if ($request->has('email')) {
              User::where('id', $user->id)->update($request->only(['email']));
+        }
+
+        // Status
+        if ($request->has('status')) {
+             User::where('id', $user->id)->update($request->only(['status']));
         }
 
         // Name

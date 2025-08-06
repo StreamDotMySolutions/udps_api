@@ -53,6 +53,11 @@ export default function EditModal({id}) {
           if( response?.data?.user.hasOwnProperty('email') ){
             store.setValue('email', response?.data?.user?.email )
           }
+
+          if( response?.data?.user.hasOwnProperty('status') ){
+            store.setValue('status', response?.data?.user?.status )
+          }
+
           })
       .catch( error => {
           console.warn(error)
@@ -78,6 +83,8 @@ export default function EditModal({id}) {
             { key: 'name', value: store.getValue('name') },
             { key: 'role_id', value: store.getValue('role_id') },
             { key: 'email', value: store.getValue('email') },
+            { key: 'status', value: store.getValue('status') },
+          
             { key: 'password', value: store.getValue('password') },
             { key: 'password_confirmation', value: store.getValue('password_confirmation') },
             { key: '_method', value: 'put' },

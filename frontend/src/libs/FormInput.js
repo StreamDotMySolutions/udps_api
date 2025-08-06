@@ -119,7 +119,11 @@ export function InputSelect({fieldName, placeholder, icon, isLoading, options}){
                         readOnly={isLoading}
                         required 
                         isInvalid={errors?.hasOwnProperty(fieldName)}
-                        value={store.getValue(fieldName) ? store.getValue(fieldName) : '' }  // Parent select manages the selected value
+                        //value={store.getValue(fieldName) ? store.getValue(fieldName) : '' }  // Parent select manages the selected value
+                        value={store.getValue(fieldName) !== undefined && store.getValue(fieldName) !== null
+                                ? store.getValue(fieldName)
+                                : ''
+}
                         onChange={ (e) => { 
                           store.setValue(fieldName, e.target.value)                         
                         } }

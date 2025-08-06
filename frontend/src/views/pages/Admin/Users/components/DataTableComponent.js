@@ -22,6 +22,7 @@ const DataTableComponent = () => {
                 <thead>
                     <tr>
                         <th style={{ 'width': '20px'}}>ID</th>
+                        <th>Status</th>
                         <th>Role</th>
                         <th>Name</th>
                         <th>Email</th>
@@ -36,6 +37,18 @@ const DataTableComponent = () => {
                             {items?.data?.map((item,index) => (
                             <tr key={index}>
                                 <td><span className="badge bg-dark">{item.id}</span></td>
+                                <td style={{ width: '80px' }}>
+                                <td style={{ width: '80px' }}>
+                                    <Badge
+                                        bg={item.status === 1 ? 'success' : 'secondary'} // success = green, secondary = grey
+                                        className="p-2 text-white"
+                                    >
+                                        {item.status === 1 ? 'Active' : 'Inactive'}
+                                    </Badge>
+                                </td>
+
+                                </td>
+
                                 <td style={{'width':'80px'}}>
                                     {item.roles?.map((role, index) => (
                                         <React.Fragment key={index}>

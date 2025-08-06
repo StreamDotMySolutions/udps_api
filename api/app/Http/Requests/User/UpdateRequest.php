@@ -19,6 +19,7 @@ class UpdateRequest extends FormRequest
                 ],
             'password' => 'required_if:password_present,true|min:6|confirmed',
             'name' => 'sometimes|required',    
+            'status' => ['sometimes', 'in:0,1'], // Only allows 0 or 1
         ];
     }
 
