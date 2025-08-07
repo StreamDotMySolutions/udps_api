@@ -19,6 +19,9 @@ export default function EditModal({id}) {
     const handleShowClick = () =>{
       //store.emptyData() // empty store data
       store.setValue('errors', null)
+      store.setValue('password', null)
+      store.setValue('password_confirmation', null)
+
       setIsLoading(true)
       setShow(true)
       

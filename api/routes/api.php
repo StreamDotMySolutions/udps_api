@@ -60,3 +60,10 @@ Route::middleware('auth:sanctum')->prefix('tokens')->group(function () {
     Route::delete('/{id}', [ApiTokenController::class, 'destroy']);
 });
 
+
+// to test valid APi and user.status == active
+// http://localhost:8000/api/secure-data
+// Header ~ Authorization: Bearer <api_token>
+Route::middleware(['auth.apikey'])->group(function () {
+    Route::get('/secure-data', fn () => ['message' => 'You are authenticated and active']);
+});

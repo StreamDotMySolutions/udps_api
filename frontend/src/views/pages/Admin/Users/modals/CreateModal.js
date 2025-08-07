@@ -46,6 +46,8 @@ export default function CreateModal() {
      */
     const handleSubmitClick = () => {
         store.setValue('errors', null)
+  
+        
         const formData = new FormData();
         const dataArray = [
             { key: 'name', value: store.getValue('name') },
