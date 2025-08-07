@@ -15,6 +15,11 @@ use App\Http\Controllers\User\{
     ApiTokenController,
 };
 
+// AI modules
+// role = User
+use App\Http\Controllers\Modules\{
+    DocumentClassificationController,
+};
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -31,7 +36,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
         'user' => $user,
         'role' => $role,
     ]);
-
 });
 
 
@@ -66,4 +70,5 @@ Route::middleware('auth:sanctum')->prefix('tokens')->group(function () {
 // Header ~ Authorization: Bearer <api_token>
 Route::middleware(['auth.apikey'])->group(function () {
     Route::get('/secure-data', fn () => ['message' => 'You are authenticated and active']);
+    Route::post('/classify-document', [DocumentClassificationController::class, 'classify']);
 });
