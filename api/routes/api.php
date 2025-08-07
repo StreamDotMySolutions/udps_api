@@ -72,3 +72,7 @@ Route::middleware(['auth.apikey'])->group(function () {
     Route::get('/secure-data', fn () => ['message' => 'You are authenticated and active']);
     Route::post('/classify-document', [DocumentClassificationController::class, 'classify']);
 });
+
+// Open AI 
+Route::get('/test-openai-key', [App\Http\Controllers\OpenAITestController::class, 'test']);
+
