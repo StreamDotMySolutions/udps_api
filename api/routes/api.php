@@ -74,5 +74,8 @@ Route::middleware(['auth.apikey'])->group(function () {
 });
 
 // Open AI 
+// to test valid APi and user.status == active
+// http://localhost:8000/api/test-openai-key
+// Header ~ Authorization: Bearer <api_token>
 Route::get('/test-openai-key', [App\Http\Controllers\OpenAITestController::class, 'test']);
 

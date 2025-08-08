@@ -3,128 +3,60 @@
 namespace App\Http\Controllers\Modules;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use OpenAI\Laravel\Facades\OpenAI;
 
-// PhpWord and PhpSpreadsheet
-use PhpOffice\PhpWord\IOFactory as WordIOFactory;
-use PhpOffice\PhpSpreadsheet\IOFactory as ExcelIOFactory;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentClassificationController extends Controller
 {
-    public function classify(Request $request)
+ 
+
+   public function classify(Request $request)
     {
         $request->validate([
-            'file' => 'required|file|mimes:jpg,jpeg,png,pdf,doc,docx,xls,xlsx|max:10240',
-        ], [
-            'file.required' => 'You must upload a document.',
-            'file.mimes' => 'Only JPG, PNG, PDF, Word, or Excel files are allowed.',
-            'file.max' => 'The file size must not exceed 10MB.',
+            'image' => 'required|image|mimes:jpg,jpeg,png|max:5120',
         ]);
 
-        // Store file temporarily
-        $file = $request->file('file');
-        $ext = strtolower($file->getClientOriginalExtension());
-        $filename = Str::random(20) . '.' . $ext;
-        $path = $file->storeAs('uploads', $filename);
-        $fullPath = storage_path("app/$path");
+        // Store image temporarily
+        $path = $request->file('image')->store('temp', 'public');
+        $imagePath = storage_path('app/public/' . $path);
 
-        // Extract text from file
-        $text = $this->extractText($fullPath, $ext);
+        // Encode image to base64
+        $imageData = base64_encode(file_get_contents($imagePath));
+        $imageMime = mime_content_type($imagePath);
 
-        if (empty(trim($text))) {
-            return response()->json([
-                'error' => 'Unable to extract text from document.',
-            ], 422);
-        }
+        // Prepare OpenAI Vision API payload
+        $response = Http::withToken(env('OPENAI_API_KEY'))
+            ->post('https://api.openai.com/v1/chat/completions', [
+                'model' => 'gpt-4o-mini',
+                'messages' => [
+                    [
+                        'role' => 'user',
+                        'content' => [
+                            [
+                                'type' => 'text',
+                                'text' => 'Please classify this image. Give a short label or description.'
+                            ],
+                            [
+                                'type' => 'image_url',
+                                'image_url' => [
+                                    'url' => 'data:' . $imageMime . ';base64,' . $imageData,
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                'max_tokens' => 100,
+            ]);
 
-        // Send to OpenAI to classify
-        $documentType = $this->classifyWithAI($text);
+        // Clean up
+        Storage::disk('public')->delete($path);
+
+        \Log::info($response);
 
         return response()->json([
-            'type' => $documentType,
+            'classification' => $response['choices'][0]['message']['content'] ?? 'No result'
         ]);
-    }
-
-    private function extractText(string $path, string $ext): string
-    {
-        if (in_array($ext, ['jpg', 'jpeg', 'png'])) {
-            return shell_exec("tesseract " . escapeshellarg($path) . " stdout 2>/dev/null");
-        }
-
-        if ($ext === 'pdf') {
-            return shell_exec("pdftotext " . escapeshellarg($path) . " -");
-        }
-
-        if (in_array($ext, ['doc', 'docx'])) {
-            return $this->extractFromDoc($path);
-        }
-
-        if (in_array($ext, ['xls', 'xlsx'])) {
-            return $this->extractFromExcel($path);
-        }
-
-        return '';
-    }
-
-    private function extractFromDoc(string $path): string
-    {
-        $phpWord = WordIOFactory::load($path);
-        $text = '';
-
-        foreach ($phpWord->getSections() as $section) {
-            foreach ($section->getElements() as $element) {
-                if (method_exists($element, 'getText')) {
-                    $text .= $element->getText() . "\n";
-                }
-            }
-        }
-
-        return $text;
-    }
-
-    private function extractFromExcel(string $path): string
-    {
-        $spreadsheet = ExcelIOFactory::load($path);
-        $text = '';
-
-        foreach ($spreadsheet->getAllSheets() as $sheet) {
-            foreach ($sheet->toArray() as $row) {
-                $text .= implode(' ', $row) . "\n";
-            }
-        }
-
-        return $text;
-    }
-
-    private function classifyWithAI(string $text): string
-    {
-        $prompt = <<<EOT
-Classify the following document as one of these types:
-- invoice
-- receipt
-- quotation
-- purchase order
-- unknown
-
-Return only one word: invoice, receipt, quotation, purchase order, or unknown.
-
-Text:
-$text
-
-Type:
-EOT;
-
-        $response = OpenAI::chat()->create([
-            'model' => 'gpt-4o',
-            'messages' => [
-                ['role' => 'user', 'content' => $prompt],
-            ],
-            'temperature' => 0,
-        ]);
-
-        return trim($response->choices[0]->message->content);
     }
 }

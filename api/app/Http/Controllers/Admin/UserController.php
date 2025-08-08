@@ -6,6 +6,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller; 
+
 use App\Http\Requests\User\StoreRequest;
 use App\Http\Requests\User\UpdateRequest;
 use App\Http\Requests\User\DeleteRequest;
@@ -121,6 +122,7 @@ class UserController extends Controller
     {
         //\Log::info($user);
         $user->delete();
+       
         return response()->json([
             'message' => "User data for id {$user->id} successfully deleted",
         ]);

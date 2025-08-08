@@ -27,6 +27,8 @@ class ApiTokenController extends Controller
 
         return $request->user()->tokens
             ->where('id', '!=', $currentTokenId)
+            ->where('api_key', '!=', null)
+            
             ->map(function ($token) {
                 return [
                     'id' => $token->id,

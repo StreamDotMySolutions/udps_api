@@ -14,7 +14,7 @@ class OpenAITestController extends Controller
             $response = OpenAI::chat()->create([
                 'model' => 'gpt-4',
                 'messages' => [
-                    ['role' => 'user', 'content' => 'Say hello'],
+                    ['role' => 'user', 'content' => 'Bila jambatan pulau pinang dibina ?'],
                 ],
             ]);
 
